@@ -1,6 +1,6 @@
 
 def inp():
-    with open("1/input.txt", "r") as file:
+    with open("day1/input.txt", "r") as file:
         return [int(r.strip()) for r in file.readlines()]
 
 def part1():
