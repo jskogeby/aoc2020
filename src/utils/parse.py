@@ -2,13 +2,22 @@ def inp(input_file, form=int):
     with open(input_file, "r") as file:
         return [form(r.strip()) for r in file.readlines()]
 
-def split_input(input_file, split_char, subsplit_char=None, form=(str, str)):
+def split_input(input_file, split_char="\n"):
     with open(input_file, "r") as file:
-        data = file.read()
+        data = file.read().strip()
         data =  data.split(split_char)
-        if subsplit_char:
-            data = [subsplit.split(subsplit_char) for subsplit in data]
         return data
+
+def split_lines(lines, split_char, form):
+    testForm = len(lines[0].split(split_char)) == len(form)
+    if not testForm:
+        print("Input split does not match form")
+        exit(1)
+    output = []
+    for line in lines:
+        splits = [form[i](split) for i, split in enumerate(line.split(split_char))]
+        output.append(splits)
+    return output
 
 # If data should be grouped between blank lines
 def group(data):
@@ -25,5 +34,3 @@ def group(data):
 
 def unpack(data):
     return [item for sublist in data for item in sublist]
-
-    
