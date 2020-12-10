@@ -2,10 +2,11 @@ def inp(input_file, form=int):
     with open(input_file, "r") as file:
         return [form(r.strip()) for r in file.readlines()]
 
-def split_input(input_file, split_char="\n"):
+def split_input(input_file, split_char="\n", form=str):
     with open(input_file, "r") as file:
         data = file.read().strip()
         data =  data.split(split_char)
+        data = list(map(form, data))
         return data
 
 def split_lines(lines, split_char, form):
